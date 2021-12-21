@@ -38,10 +38,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         // ключ - полное имя. Допущение - полных тезок нет
         if (employees.containsKey(employee.getPerson().getFullName())) {
             throw new EmployeeExistException("Employee exist!");
-        } else {
-            employees.put(employee.getPerson().getFullName(), employee);
-            return employee;
         }
+        employees.put(employee.getPerson().getFullName(), employee);
+        return employee;
+
     }
 
     /**
