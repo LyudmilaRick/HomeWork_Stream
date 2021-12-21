@@ -24,21 +24,27 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Employee findEmployeeWithMinSalary(int department) {
         return employeeService.getAllEmployee().stream()
                 .filter(s -> s.getDepartment() == department)
-                .min(Comparator.comparing(s -> s.getSalary()))
+                .min(Comparator.comparing(Employee::getSalary))
                 .orElseThrow(() -> new EmployeeNotFoundException("Работник с миимальной ЗП не найден" + department));
     }
 
     @Override
     public Employee findEmployeeWithMaxSalary(int department) {
-        Optional<Employee> maxEmployee = employeeService.getAllEmployee().stream()
+        //Optional<Employee> maxEmployee = employeeService.getAllEmployee().stream()
+        //        .filter(s -> s.getDepartment() == department)
+        //        .max(Comparator.comparing(Employee::getSalary));
+        //if (maxEmployee.isPresent()) {
+        //    return maxEmployee.get();
+        //}
+        //throw new EmployeeNotFoundException("Работник с максимальной ЗП не найден" + department);
+
+        return employeeService.getAllEmployee().stream()
                 .filter(s -> s.getDepartment() == department)
-                .max(Comparator.comparing(s -> s.getSalary()));
-        if (maxEmployee.isPresent()) {
-            return maxEmployee.get();
-        }
-        throw new EmployeeNotFoundException("Работник с максимальной ЗП не найден" + department);
+                .max(Comparator.comparing(s -> s.getSalary()))
+                .orElseThrow(() -> new EmployeeNotFoundException("Работник с миимальной ЗП не найден" + department));
     }
 
+    //s -> s.getSalary
     @Override
     public Collection<Employee> getAllEmployeeInDepartment(int department) {
         return employeeService.getAllEmployee().stream()
@@ -46,9 +52,9 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .collect(Collectors.toList());
     }
 
-    public Collection<Employee> getAllEmployeeInOrganization() {
+    public Collection<Employee> getAllEmployee() {
         return employeeService.getAllEmployee().stream()
-                .sorted(Comparator.comparing(Employee::getDepartment))
+                .sorted(Comparator.comparing(Employee::getDepartment).thenComparing(e -> e.getPerson().getFullName()))
                 .collect(Collectors.toList());
     }
 }

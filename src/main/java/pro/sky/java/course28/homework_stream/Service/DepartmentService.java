@@ -9,6 +9,6 @@ public interface DepartmentService {
     Employee findEmployeeWithMaxSalary(int department);
 
     Collection<Employee> getAllEmployeeInDepartment(int department);
-    Collection<Employee> getAllEmployeeInOrganization();
+    Collection<Employee> getAllEmployee();
 }
 

@@ -39,6 +39,6 @@ public class DepartmentController {
 
     @GetMapping("/all")
     Collection<Employee> getAllEmployeeInDepartment() {
-        return departmentService.getAllEmployeeInOrganization();
+        return departmentService.getAllEmployee();
     }
 }
