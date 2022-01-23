@@ -1,5 +1,9 @@
 package pro.sky.java.course28.homework_stream.Repository;
+
 import java.util.Objects;
+
+import org.apache.commons.lang3.StringUtils;
+import pro.sky.java.course28.homework_stream.Exception.EmployeeNotVerify;
 
 public class Person {
     private final String lastName;       // Фамилия
@@ -13,7 +17,7 @@ public class Person {
      */
     public Person(String lastName, String firstName) {
         this.firstName = normalize(firstName);
-        this.lastName  = normalize(lastName);
+        this.lastName = normalize(lastName);
     }
 
     /**
@@ -22,19 +26,24 @@ public class Person {
      * Убираются лишние пробелы из имени.
      * Все символы, кроме первого, преобразуются в нижний регистр.
      * Первый символ имени преобразуется верхний регистр.
-     *
+     * в переданной строке нет чисел и других запрещенных символов.
      * @param str Исходная строка имени.
      * @return Нормализованная строка имени.
      */
     protected final String normalize(String str) {
-        if (str == null || str.isEmpty()) {
-            return " ";
+        // в переданной строке нет чисел и других запрещенных символов.
+        if (StringUtils.isAlpha(str)) {
+
+            if (StringUtils.isEmpty(str)) {
+                return " ";
+            }
+            if (str.length() == 1) {
+                return StringUtils.upperCase(str);
+            }
+            String res = StringUtils.replace(str, " ", "");
+            return Character.toUpperCase(res.charAt(0)) + res.substring(1).toLowerCase();
         }
-        if (str.length() == 1) {
-            return str.toUpperCase();
-        }
-        String res = str.replace(" ", "");
-        return Character.toUpperCase(res.charAt(0)) + res.substring(1).toLowerCase();
+        throw new EmployeeNotVerify("Verification failed");
     }
 
     public String getLastName() {
@@ -53,6 +62,7 @@ public class Person {
     public String toString() {
         return String.join(" ", lastName, firstName).trim();
     }
+
     /**
      * Возвращает хэш-код для полного имени (Ф.И.О.).
      *
@@ -62,6 +72,7 @@ public class Person {
     public int hashCode() {
         return Objects.hash(lastName, firstName);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
