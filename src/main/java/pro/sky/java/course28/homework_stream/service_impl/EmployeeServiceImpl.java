@@ -1,11 +1,11 @@
-package pro.sky.java.course28.homework_stream.ServiceImpl;
+package pro.sky.java.course28.homework_stream.service_impl;
 
 import org.springframework.stereotype.Service;
-import pro.sky.java.course28.homework_stream.Exception.EmployeeExistException;
-import pro.sky.java.course28.homework_stream.Exception.EmployeeNotFoundException;
-import pro.sky.java.course28.homework_stream.Repository.Employee;
-import pro.sky.java.course28.homework_stream.Repository.Person;
-import pro.sky.java.course28.homework_stream.Service.EmployeeService;
+import pro.sky.java.course28.homework_stream.exception.EmployeeExistException;
+import pro.sky.java.course28.homework_stream.exception.EmployeeNotFoundException;
+import pro.sky.java.course28.homework_stream.repository.Employee;
+import pro.sky.java.course28.homework_stream.repository.Person;
+import pro.sky.java.course28.homework_stream.service.EmployeeService;
 
 import java.util.*;
 
@@ -21,8 +21,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    //public Collection<Employee> getAllEmployee() {
+    //    return new ArrayList<>(employees.values());
+
     public Collection<Employee> getAllEmployee() {
-        return new ArrayList<>(employees.values());
+        return employees.values();
     }
 
     /**

@@ -1,4 +1,4 @@
-package pro.sky.java.course28.homework_stream.Repository;
+package pro.sky.java.course28.homework_stream.repository;
 import java.util.Objects;
 
 public class Person {

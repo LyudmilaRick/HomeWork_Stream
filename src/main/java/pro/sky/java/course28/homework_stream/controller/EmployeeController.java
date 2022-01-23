@@ -1,12 +1,12 @@
-package pro.sky.java.course28.homework_stream.Controller;
+package pro.sky.java.course28.homework_stream.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pro.sky.java.course28.homework_stream.Repository.Employee;
-import pro.sky.java.course28.homework_stream.Service.EmployeeService;
-import pro.sky.java.course28.homework_stream.ServiceImpl.EmployeeServiceImpl;
+import pro.sky.java.course28.homework_stream.repository.Employee;
+import pro.sky.java.course28.homework_stream.service.EmployeeService;
+import pro.sky.java.course28.homework_stream.service_impl.EmployeeServiceImpl;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package pro.sky.java.course28.homework_stream.Repository;
+package pro.sky.java.course28.homework_stream.repository;
 import java.util.Objects;
 public class Employee {
 
@@ -79,8 +79,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format("\"%6s %3d %-15s %-15s %-15s %.2f\", ",
-                department, person.getLastName(), person.getFirstName(), salary);
+     //   return String.format("\"%6s %3d %-15s %-15s %-15s %.2f\", ",
+     //           department, person.getLastName(), person.getFirstName(), salary);
+        return String.join(" ", person.getLastName(),person.getFirstName());
+                //           department, person.getLastName(), person.getFirstName(), salary);
     }
     @Override
     public boolean equals(Object o) {
@@ -88,6 +90,7 @@ public class Employee {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return department == employee.department && Float.compare(employee.salary, salary) == 0 && Objects.equals(person, employee.person);
+
     }
 
     @Override

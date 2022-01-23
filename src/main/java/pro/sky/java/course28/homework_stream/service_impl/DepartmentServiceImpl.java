@@ -1,22 +1,20 @@
-package pro.sky.java.course28.homework_stream.ServiceImpl;
+package pro.sky.java.course28.homework_stream.service_impl;
 
 import org.springframework.stereotype.Service;
-import pro.sky.java.course28.homework_stream.Exception.EmployeeNotFoundException;
-import pro.sky.java.course28.homework_stream.Repository.Employee;
-import pro.sky.java.course28.homework_stream.Service.DepartmentService;
-import pro.sky.java.course28.homework_stream.Service.EmployeeService;
+import pro.sky.java.course28.homework_stream.exception.EmployeeNotFoundException;
+import pro.sky.java.course28.homework_stream.repository.Employee;
+import pro.sky.java.course28.homework_stream.service.DepartmentService;
+import pro.sky.java.course28.homework_stream.service.EmployeeService;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-    public final EmployeeService employeeService;
+    public EmployeeService employeeService;
 
-    public DepartmentServiceImpl(EmployeeServiceImpl employeeService) {
+    public DepartmentServiceImpl() {
         this.employeeService = employeeService;
     }
 
@@ -55,6 +53,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Collection<Employee> getAllEmployee() {
         return employeeService.getAllEmployee().stream()
                 .sorted(Comparator.comparing(Employee::getDepartment).thenComparing(e -> e.getPerson().getFullName()))
-                .collect(Collectors.toList());
+               .collect(Collectors.toList());
+
+    //     return employeeService.getAllEmployee();
     }
 }
